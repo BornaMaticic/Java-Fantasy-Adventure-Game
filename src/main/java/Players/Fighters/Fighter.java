@@ -7,7 +7,7 @@ public abstract class Fighter extends Player {
 
     private int ATK, ATKBonus, DEFBonus;
 
-    public Fighter(String name, int HP, int DEF, int ATK, int ATKBonus, int DEFBonus) {
+    public Fighter(String name, int HP, int ATK, int DEF, int ATKBonus, int DEFBonus) {
         super(name, HP, DEF);
         this.ATK = ATK;
         this.ATKBonus = ATKBonus;
@@ -15,7 +15,9 @@ public abstract class Fighter extends Player {
     }
 
     public void attack(Enemy enemy){
-
+        int attackDamage = this.ATK - enemy.getDEF();
+        attackDamage = snapToZero(attackDamage);
+        enemy.lowerHP(attackDamage);
     }
 
     public int getATK() {
@@ -28,5 +30,10 @@ public abstract class Fighter extends Player {
 
     public int getDEFBonus() {
         return DEFBonus;
+    }
+
+    private int snapToZero(int amount){
+        if (amount < 0) {amount = 0;}
+        return amount;
     }
 }
