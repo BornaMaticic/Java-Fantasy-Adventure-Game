@@ -67,17 +67,15 @@ public class KnightTest {
 
     @Test
     public void getAttackStrength() {
-        assertEquals(10, knight.getAttackStrength());
-        knight.pickUpWeapon(weapon);
         assertEquals(10, knight.getATK());
-        assertEquals(35, knight.getAttackStrength());
+        knight.pickUpWeapon(weapon);
+        assertEquals(35, knight.getATK());
     }
 
     @Test
     public void getDefenseStrength() {
         assertEquals(2, knight.getDEF());
         knight.pickUpWeapon(weapon);
-        assertEquals(2, knight.getDEF());
         assertEquals(-1, knight.getDEF());
     }
 }
