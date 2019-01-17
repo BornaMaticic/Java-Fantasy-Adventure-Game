@@ -1,8 +1,9 @@
 package Enemies;
 
+import Interfaces.IAttack;
 import Players.Player;
 
-public class Enemy {
+public class Enemy implements IAttack {
 
 
     private EnemyType enemyType;
@@ -42,10 +43,11 @@ public class Enemy {
         DEF = snapToZero(DEF);
     }
 
-    public void attack(Player player){
-        int damage = this.ATK - player.getDEF();
+    public void attack(IAttack attackee){
+        Player attackedPlayer = (Player) attackee;
+        int damage = this.ATK - attackedPlayer.getDEF();
         damage = snapToZero(damage);
-        player.lowerHP(damage);
+        attackedPlayer.lowerHP(damage);
     }
 
     private int snapToZero(int amount){

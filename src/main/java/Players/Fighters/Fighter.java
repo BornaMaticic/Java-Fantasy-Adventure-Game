@@ -1,5 +1,6 @@
 package Players.Fighters;
 
+import Interfaces.IAttack;
 import Players.Player;
 import Enemies.Enemy;
 
@@ -14,10 +15,11 @@ public abstract class Fighter extends Player {
         this.DEFBonus = DEFBonus;
     }
 
-    public void attack(Enemy enemy){
-        int attackDamage = this.ATK - enemy.getDEF();
+    public void attack(IAttack attackee){
+        Enemy attackedEnemy = (Enemy) attackee;
+        int attackDamage = this.ATK - attackedEnemy.getDEF();
         attackDamage = snapToZero(attackDamage);
-        enemy.lowerHP(attackDamage);
+        attackedEnemy.lowerHP(attackDamage);
     }
 
     public int getATK() {

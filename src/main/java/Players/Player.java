@@ -1,6 +1,8 @@
 package Players;
 
-public abstract class Player {
+import Interfaces.IAttack;
+
+public abstract class Player implements IAttack {
 
     private String name;
     private int HP, DEF;
