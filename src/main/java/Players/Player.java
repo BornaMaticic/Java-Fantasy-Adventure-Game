@@ -5,7 +5,7 @@ import Interfaces.IAttack;
 public abstract class Player implements IAttack {
 
     private String name;
-    private int HP, DEF;
+    protected int HP, DEF;
 
     public Player(String name, int HP, int DEF) {
         this.name = name;

@@ -2,6 +2,8 @@ package Players.Fighters;
 
 import Enemies.Enemy;
 import Enemies.EnemyType;
+import Items.Weapon;
+import Items.WeaponType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,12 +13,14 @@ public class KnightTest {
 
     Knight knight;
     Enemy enemy, strongEnemy;
+    Weapon weapon;
 
     @Before
     public void setUp() {
         knight = new Knight("Sir Bornaverie", 5, 10, 2);
         enemy = new Enemy(EnemyType.SQUIRREL);
         strongEnemy = new Enemy(EnemyType.ICESQUIRREL);
+        weapon = new Weapon(WeaponType.AXE);
     }
 
     @Test
@@ -52,5 +56,28 @@ public class KnightTest {
         assertEquals(5, knight.getHP());
         knight.lowerHP(7);
         assertEquals(0, knight.getHP());
+    }
+
+    @Test
+    public void pickUpWeapon() {
+        assertNull(knight.getWeapon());
+        knight.pickUpWeapon(weapon);
+        assertEquals(weapon, knight.getWeapon());
+    }
+
+    @Test
+    public void getAttackStrength() {
+        assertEquals(10, knight.getAttackStrength());
+        knight.pickUpWeapon(weapon);
+        assertEquals(10, knight.getATK());
+        assertEquals(35, knight.getAttackStrength());
+    }
+
+    @Test
+    public void getDefenseStrength() {
+        assertEquals(2, knight.getDEF());
+        knight.pickUpWeapon(weapon);
+        assertEquals(2, knight.getDEF());
+        assertEquals(-1, knight.getDEF());
     }
 }
